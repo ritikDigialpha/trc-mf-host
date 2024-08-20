@@ -1,12 +1,15 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { useStoreDispatch } from "@/hooks/useStoreDispatch";
+import { increment } from "@/store/features/common/commonSlice";
 import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
+import { Inter } from "next/font/google";
+import Head from "next/head";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
-const Header = dynamic(() => import("hotels/Header"));
+const Header = dynamic(() => import("hotels/Header"), { ssr: false });
 export default function Home() {
+  const dispatch = useStoreDispatch();
   return (
     <>
       <Header>Kesa hai bhaai</Header>
@@ -17,29 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+        <button onClick={() => dispatch(increment())}>Cklick me</button>
 
         <div className={styles.center}>
           <Image

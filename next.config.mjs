@@ -18,11 +18,24 @@ const nextConfig = {
     const federatedConfig = {
       name: "host",
       remotes: remotes,
-      shared: {},
       filename: "static/chunks/remoteEntry.js",
       exposes: {
         "./Header": "./src/components/Header",
+        "./Footer": "./src/components/Footer",
+        "./hooks/useStore": "./src/hooks/useStore",
+        "./hooks/useStoreSelector": "./src/hooks/useStoreSelector",
+        "./providers/StoreProvider": "./src/providers/StoreProvider",
       },
+      // shared: {
+      //   react: {
+      //     singleton: true,
+      //     requiredVersion: deps.react,
+      //   },
+      //   "react-dom": {
+      //     singleton: true,
+      //     requiredVersion: deps["react-dom"],
+      //   },
+      // },
     };
     config.plugins.push(
       new NextFederationPlugin(federatedConfig)
